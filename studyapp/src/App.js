@@ -3,21 +3,21 @@ import UserList from './components/UserList';
 import CreateUser from './components/CreateUser';
 
 function App() {
-	//새롭게 들어온 input 관리
+	//새롭게 들어온 inputs를 관리하는 useState
 	const [inputs, setInputs] = useState({
 		username: '',
 		email: '',
 	});
 
-	// 구조분해할당
+	// 구조분해할당으로 inputs에서 username과 email을 뽑아내기
 	const { username, email } = inputs;
 
 	// input onChange 함수
 	const onChange = e => {
-		//구조분해할당
+		// e.target에서 구조분해할당으로 name과 value를 구하세요 >>
 		const { name, value } = e.target;
 
-		//input 수정
+		// 구한 name과 value로 inputs를 수정하세요 >>
 		setInputs({
 			...inputs,
 			[name]: value,
@@ -43,20 +43,32 @@ function App() {
 		},
 	]);
 
-	// 유저 id
+	// useRef를 사용해 nextId를 선언하세요(기본값은 4부터 시작) >>
 	const nextId = useRef(4);
 
+	// 새롭게 들어온 user를 users 배열에 추가하는 함수 onCreate를 구현하시오 >>
 	const onCreate = () => {
-		// 나중에 구현 할 배열에 항목 추가하는 로직
-		// ...
+		// 새롭게 들어온 user 객체를 const로 선언하시오 >>
+		const user = {
+			id: nextId.current,
+			username,
+			email,
+		};
 
+		// 새로운 user를 추가하세요 (스프레드 문법) >>
+		setUsers([...users, user]);
+		// concat 버전 : setUsers(users.concat(user));
+
+		// input 창을 비우세요 >>
 		setInputs({
 			username: '',
 			email: '',
 		});
 
+		// nextid를 1 증가시키세요 >>
 		nextId.current += 1;
 	};
+
 	return (
 		<>
 			<CreateUser

@@ -1,8 +1,6 @@
 import React from 'react';
 
 function CreateUser({ username, email, onChange, onCreate }) {
-	// input 2개를 구현하세요 >>
-	// 클릭하면 onCreate가 실행되는 버튼을 구현하세요 >>
 	return (
 		<div>
 			<input

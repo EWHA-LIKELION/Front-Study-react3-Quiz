@@ -4,14 +4,7 @@ function UserList({ users, onRemove, onToggle }) {
 	// ** 배열 users를 map을 사용해 User 컴포넌트 여러개로 렌더링하세요 >>
 	return (
 		<div>
-			{users.map(user => (
-				<User
-					key={user.id}
-					user={user}
-					onRemove={onRemove}
-					onToggle={onToggle}
-				/>
-			))}
+			<p>User 컴포넌트를 렌더링하세요</p>
 		</div>
 	);
 }
@@ -25,12 +18,11 @@ function User({ user, onRemove, onToggle }) {
 					cursor: 'pointer',
 					color: user.active ? 'orange' : 'black',
 				}}
-				onClick={() => onToggle(user.id)}
 			>
 				{user.username}
 			</b>
 			<span>({user.email})</span>
-			<button onClick={() => onRemove(user.id)}>삭제</button>
+			<button>삭제</button>
 		</div>
 	);
 }

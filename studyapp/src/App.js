@@ -4,21 +4,21 @@ import CreateUser from './components/CreateUser';
 import API from './components/API';
 
 function App() {
-	//새롭게 들어온 inputs를 관리하는 useState
+	// 새롭게 들어온 inputs를 관리하는 useState입니다.
 	const [inputs, setInputs] = useState({
 		username: '',
 		email: '',
 	});
 
-	// 구조분해할당으로 inputs에서 username과 email을 뽑아내기
+	// ** 구조분해할당으로 inputs에서 username과 email 값을 구하세요 >>
 	const { username, email } = inputs;
 
-	// input onChange 함수
+	// ** input onChange 함수를 구현하세요 >>
 	const onChange = e => {
-		// e.target에서 구조분해할당으로 name과 value를 구하세요 >>
+		// ** e.target에서 구조분해할당으로 name과 value를 구하세요 >>
 		const { name, value } = e.target;
 
-		// 구한 name과 value로 inputs를 수정하세요 >>
+		// ** 구한 name과 value로 inputs를 수정하세요 >>
 		setInputs({
 			...inputs,
 			[name]: value,
@@ -43,25 +43,26 @@ function App() {
 			id: 3,
 			username: '도연',
 			email: 'test3@likelion.org',
-			active: true,
+			active: false,
 		},
 	]);
 
-	// useRef를 사용해 nextId를 선언하세요(기본값은 4부터 시작) >>
+	// 1) useRef를 사용해 nextId를 선언하세요 (기본값은 4부터 시작합니다) >>
 	const nextId = useRef(4);
 
-	// 새롭게 들어온 user를 users 배열에 추가하는 함수 onCreate를 구현하시오 >>
+	// 1) 새롭게 들어온 user를 users 배열에 추가하는 함수 onCreate를 구현하시오 >>
 	const onCreate = () => {
 		// 새롭게 들어온 user 객체를 const로 선언하시오 >>
 		const user = {
 			id: nextId.current,
-			username,
-			email,
+			username: username,
+			email: email,
+			active: false,
 		};
 
 		// 새로운 user를 추가하세요 (스프레드 문법) >>
 		setUsers([...users, user]);
-		// concat 버전 : setUsers(users.concat(user));
+		// (concat 문법) >> setUsers(users.concat(user));
 
 		// input 창을 비우세요 >>
 		setInputs({
@@ -73,12 +74,13 @@ function App() {
 		nextId.current += 1;
 	};
 
+	// 2) 요소를 삭제하는 onRemove 함수를 구현하세요 >>
 	const onRemove = id => {
 		// filter를 사용해 선택된 id의 user요소를 삭제하세요 >>
 		setUsers(users.filter(user => user.id !== id));
 	};
 
-	// 토글 함수를 구현하세요 >>
+	// 3) 토글하면 active 상태를 바꾸는 onToggle 함수를 구현하세요 >>
 	const onToggle = id => {
 		setUsers(
 			users.map(user =>
